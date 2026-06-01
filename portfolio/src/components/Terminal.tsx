@@ -71,7 +71,7 @@ export default function Terminal() {
             onComplete={handleWordComplete} 
           />
         </div>
-        <input className="col-start-1 row-start-1 w-full bg-transparent text-white outline-none border-gray-500"/>
+          <input className="col-start-1 row-start-1 w-full bg-transparent text-white outline-none border-gray-500"/>
       </div>
     </div>
   );
