@@ -22,7 +22,7 @@ function Menu() {
     }, [index]);
 
     return (
-        <div className="bg-neutral-950 font-mono w-fit border-3 border-gray-500 leading-none" >
+        <div className="bg-neutral-950/50 font-mono w-fit border-3 border-gray-500 leading-none" >
             <img src={logo} className="object-none pt-10 pr-60 pl-60"></img>
             <br/>
            <div className="p-10 text-gray-700">

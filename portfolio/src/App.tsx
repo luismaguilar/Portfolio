@@ -1,10 +1,11 @@
 import Menu from "./components/Menu"
 import Terminal from "./components/Terminal"
+import './App.css'
 
 function App() {
 
   return (
-    <div className="bg-neutral-950 h-screen w-screen flex flex-col min-h-screen justify-center items-center">
+    <div className="grid-bg bg-neutral-950 h-screen w-screen flex flex-col min-h-screen justify-center items-center">
       <div>
         <Menu></Menu>
         <br/>

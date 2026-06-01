@@ -1,45 +1,74 @@
 import { useEffect, useState } from "react";
-import '../styles/Terminal.css'
+import '../styles/Terminal.css';
 
-const srcString = `open about`
+// 1. Move your list of words here
+const WORDS_LIST = ["open about", "open projects", "open contact"];
 
-const Typewriter = ({
-  srcString, 
-  minTypingDelay = 50, 
-  typingDelayVariation = 200
-}) => {
-  const [content, setContent] = useState('')
-       
+const Typewriter = ({ srcString = '', onComplete }) => {
+  const [content, setContent] = useState('');
+      
+  // Reset the typed content whenever a new word is passed in
   useEffect(() => {
-    const cursorPosition = content.length
-    const typingDelay = 0|(Math.random()*typingDelayVariation+minTypingDelay)
+    setContent('');
+  }, [srcString]);
+
+  useEffect(() => {
+    const cursorPosition = content.length;
+    const typingDelay = 50;
+    const pauseBeforeNextWord = 1500; // Time (ms) the user can read the completed word
     
-    if(cursorPosition == srcString.length) return
+    // Check if the current word is fully typed
+    if (cursorPosition === srcString.length && srcString.length > 0) {
+      if (onComplete) {
+        const nextWordTimer = setTimeout(() => {
+          onComplete();
+        }, pauseBeforeNextWord);
+        
+        return () => clearTimeout(nextWordTimer);
+      }
+      return;
+    }
     
+    // Type the next character
     const timer = setTimeout(() => {
-      setContent(content+srcString[cursorPosition])
-      clearTimeout(timer)
-    }, typingDelay)
-    
-  }, [content])
+      setContent(content + srcString[cursorPosition]);
+    }, typingDelay);
   
-  return <span>{content}<span className="cursor">|</span></span>
-}
+    // Clean up the timer properly
+    return () => clearTimeout(timer);
+  
+  }, [content, srcString, onComplete]);
+  
+  return (
+    <span className="text-gray-400">
+      {content}
+      <span className="cursor">|</span>
+    </span>
+  );
+};
 
-function Terminal() {
+export default function Terminal() {
+  // 2. Track which word index we are currently on
+  const [wordIndex, setWordIndex] = useState(0);
 
+  const handleWordComplete = () => {
+    // Loop back to 0 when reaching the end of the array
+    setWordIndex((prevIndex) => (prevIndex + 1) % WORDS_LIST.length);
+  };
 
-    return (
-        <div className="bg-neutral-950 font-mono border-3 border-gray-500">
-            <div className="grid text-green-300 text-left p-2"> 
-                <div className="col-start-1 row-start-1 w-full">
-                    <span className="text-gray-400">luis@portfolio:~$ </span>
-                    <Typewriter {...{srcString}} />
-            </div>
-                <input className="col-start-1 row-start-1 w-full bg-transparent text-white outline-none border-gray-500" />
-            </div>
+  return (
+    <div className="bg-neutral-950/50 font-mono border-3 border-gray-500">
+      <div className="grid text-left p-2"> 
+        <div className="col-start-1 row-start-1 w-full">
+          <span className="text-green-300">luis@portfolio:~$ </span>
+          {/* 3. Pass the active string and the completion trigger */}
+          <Typewriter 
+            srcString={WORDS_LIST[wordIndex]} 
+            onComplete={handleWordComplete} 
+          />
         </div>
-    )
+        <input className="col-start-1 row-start-1 w-full bg-transparent text-white outline-none border-gray-500"/>
+      </div>
+    </div>
+  );
 }
-
-export default Terminal
