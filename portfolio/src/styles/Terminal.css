@@ -1,0 +1,8 @@
+.cursor { 
+    color: white;
+    animation:1s blink step-end infinite}
+    @keyframes blink{from,to{color:transparent}50%{color:#ffffff}}
+    @-moz-keyframes blink{from,to{color:transparent}50%{color:#ffffff}}
+    @-webkit-keyframes blink{from,to{color:transparent}50%{color:#ffffff}}
+    @-ms-keyframes blink{from,to{color:transparent}50%{color:#ffffff}}
+    @-o-keyframes blink{from,to{color:transparent}50%{color:#ffffff}}

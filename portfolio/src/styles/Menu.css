@@ -1,5 +1,5 @@
 .btn-menu:hover {
-    background-color: white;
+    background-color: rgb(141, 141, 141);
     color: black !important;
     cursor: pointer;
 }
