@@ -3,8 +3,12 @@ import '../styles/Terminal.css';
 
 // 1. Move your list of words here
 const WORDS_LIST = ["open about", "open projects", "open contact"];
+    type TypewriterProps = {
+      srcString?: string;
+      onComplete?: () => void;
+    };
 
-const Typewriter = ({ srcString = '', onComplete }) => {
+const Typewriter = ({ srcString = '', onComplete }: TypewriterProps) => {
   const [content, setContent] = useState('');
       
   // Reset the typed content whenever a new word is passed in
