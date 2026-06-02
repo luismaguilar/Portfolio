@@ -77,7 +77,7 @@ export default function Terminal() {
           </div>
         </div>
         <div className="border-t-3 border-gray-500 p-1 flex">
-          <label className="text-teal-400 mr-2">luis@portfolio:~$</label><input className="col-start-1 row-start-1 w-full bg-transparent text-gray-400 outline-none border-gray-500"/>
+          <label className="text-teal-400 mr-2">luis@portfolio:~$</label><input className="col-start-1 row-start-1 w-full bg-transparent text-gray-200 outline-none border-gray-500"/>
         </div>
       </div>
     </>

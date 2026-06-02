@@ -1,6 +1,8 @@
-.btn-menu:hover {
-    background-color: rgb(141, 141, 141);
-    color: black !important;
-    cursor: pointer;
+.btn-menu:hover { 
+  background-color: rgb(141, 141, 141); 
+  cursor: pointer; 
 }
 
+.btn-menu:hover span { 
+  color: black !important; 
+}
